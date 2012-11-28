@@ -1,0 +1,89 @@
+<div data-role="header" data-theme="d">
+	<h1>About</h1>
+</div><!-- /header -->
+
+<div data-role="content" id="aboutContent" data-theme="d">
+	<h3><strong>Instructions for subscribing to your VA Calendar</strong></h3>
+	<% if (typeof user === 'undefined' || user === null) { %>
+		<div>
+			<p class="redFlag">You must first sign in to Launchpad to access the protected information related to your personal calendar.</p>
+		</div>
+	<% } else { %>
+		<div data-role="collapsible-set">
+			<div class="calendarInstructions" data-role="collapsible" data-theme="e" data-content-theme="b" data-mini="true">
+				<h4>Apple Calendar (iPad or iPhone)</h4>
+				<textarea type="text" rows="4" readonly="readonly"><%= url %></textarea>
+				<ol>
+					<li>Copy the URL listed above</li>
+					<li>Open the "Settings" app on your mobile device</li>
+					<li>Look in the left-hand pane</li>
+					<li>Tap "Mail, Contacts, Calendars"</li>
+					<li>Look in the right-hand pane</li>
+					<li>Tap "Add Account..."</li>
+					<li>Tap "Other"</li>
+					<li>Tap "Add Subscribed Calendar"</li>
+					<li>Paste the URL into the "Server" box</li>
+					<li>Tap the "Next" button</li>
+					<li>Tap the "Save" button</li>
+				</ol>
+				<p>Now you can view your appointments in your Calendar</p>
+			</div>
+			<div class="calendarInstructions" data-role="collapsible" data-theme="e" data-content-theme="b" data-mini="true">
+				<h4>Apple iCal (Desktop or Laptop)</h4>
+				<textarea type="text" rows="4" readonly="readonly"><%= url %></textarea>
+				<ol>
+					<li>Copy the URL listed above</li>
+					<li>Open iCal</li>
+					<li>Look at the top of your screen</li>
+					<li>Click "Calendar"</li>
+					<li>Click "Subscribe..."</li>
+					<li>Paste the URL in the "Calendar URL" box</li>
+					<li>Click "Subscribe"</li>
+					<li>Click "Add Subscribed Calendar"</li>
+					<li>Paste the URL into the "Server" box</li>
+					<li>Click the "Next" button</li>
+					<li>Click the "Save" button</li>
+				</ol>
+				<p>Now you can view your appointments in your Calendar</p>
+			</div>
+			<div class="calendarInstructions" data-role="collapsible" data-theme="e" data-content-theme="b" data-mini="true">
+				<h4>Google Calendar (Mobile Device)</h4>
+				<textarea type="text" rows="4" readonly="readonly"><%= url %></textarea>
+				<ol>
+					<li>Copy the URL listed above</li>
+					<li>Open Google Calendar</li>
+					<li>Scroll to the bottom of the screen</li>
+					<li>Tap on the "View: Desktop" link</li>
+					<li>Scroll up and zoom into the left-hand pane</li>
+					<li>Tap the arrow to the right of "Other calendars"</li>
+					<li>Select "Add by URL"</li>
+					<li>Paste the URL into the "URL" box</li>
+					<li>Tap "Add Calendar"</li>
+				</ol>
+				<p>Now you can view your appointments in your Calendar</p>
+			</div>
+			<div class="calendarInstructions" data-role="collapsible" data-theme="e" data-content-theme="b" data-mini="true">
+				<h4>Google Calendar (Desktop or Laptop)</h4>
+				<textarea type="text" rows="4" readonly="readonly"><%= url %></textarea>
+				<ol>
+					<li>Copy the URL listed above</li>
+					<li>Open Google Calendar</li>
+					<li>Look in the left-hand pane</li>
+					<li>Click the arrow to the right of "Other calendars"</li>
+					<li>Select "Add by URL"</li>
+					<li>Paste the URL into the "URL" box</li>
+					<li>Click "Add Calendar"</li>
+				</ol>
+				<p>Now you can view your appointments in your Calendar</p>
+			</div>
+			<div class="calendarInstructions" data-role="collapsible" data-theme="e" data-content-theme="b" data-mini="true">
+				<h4>Microsoft Outlook</h4>
+				<p>Direct, automated calendar subscription by URL is not currently available with Outlook.</p>
+			</div>
+		</div>
+	<% } %>
+</div><!-- /content -->
+
+<div class="ui-body ui-body-b">
+	<div><button id="about-ok-btn" data-theme="b">OK</button></div>
+</div>

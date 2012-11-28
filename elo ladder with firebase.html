@@ -1,0 +1,118 @@
+<head>
+	<script type='text/javascript' src='https://static.firebase.com/v0/firebase.js'></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+
+<body>
+<table id='elotable'>
+	<thead>
+		<tr><td>First Name</td><td>Last Name</td><td>ELO</td></tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+
+<ol style='list-style:none;'>
+	<li>
+		<label>First Name</label>
+		<input id='first-name' type='text'></input>
+	</li>
+	<li>
+		<label>Last Name</label>
+		<input id='last-name' type='text'></input>
+	</li>
+	<li>
+		<label></label>
+		<button id='new-player'>Add New Player</button>
+	</li>
+</ol>
+
+<ol style='list-style:none;'>
+	<li>
+		<label>Winner</label>
+		<select id='winner' class='select-player'></select>
+	</li>
+	<li>
+		<label>Loser</label>
+		<select id='loser' class='select-player'></select>
+	</li>
+	<li>
+		<label></label>
+		<button id='result-calculator'>Enter Result</button>
+	</li>
+</ol>
+
+<script type='text/javascript'>
+var myRootRef = new Firebase('https://firesupport.firebaseIO.com');
+var playersList = new Firebase('https://firesupport.firebaseIO.com/players');
+
+//Click function to add new players
+$('#new-player').on("click", function(event){
+	createNewPlayer($('#first-name').val(),$('#last-name').val());
+});
+
+//Click function to calculate player ELO after a result
+$('#result-calculator').on("click", function(event){
+	modifyELO($('#winner').val(),$('#loser').val());
+});
+
+//On data change regenerate the elo table and result dropdowns
+playersList.on('value', function(dataSnapshot) {
+	generateTable(dataSnapshot);
+	generateSelectLists(dataSnapshot);
+});
+
+//Add a new player to firebase
+function createNewPlayer(firstname, lastname) {
+	var newplayer =  new Firebase('https://firesupport.firebaseIO.com/players/' + firstname + '-' + lastname);
+	newplayer.setWithPriority({first : firstname, last : lastname},'1200');
+}
+
+//Modify ELO in firebase
+function modifyELO(winner, loser) {
+	//The K value modifies how much movement there is per result.  Equally rated players move 50% of K value up or down after a result
+	var kValue = 16;
+	var winnerELO;
+	var loserELO;
+
+	var winnerRef =  playersList.child(winner);
+	var loserRef =  playersList.child(loser);
+	
+	winnerRef.once('value', function(winnerSnapshot) {
+		winnerELO = winnerSnapshot.getPriority();
+	});
+	
+	loserRef.once('value', function(loserSnapshot) {
+		loserELO = loserSnapshot.getPriority();
+	});
+
+	var winnerExpectedScore = 1/(1 + Math.pow(10,((loserELO - winnerELO)/400)));
+	var loserExpectedScore = 1 - winnerExpectedScore;
+	
+	var winnerNewELO = Math.round(parseInt(winnerELO) + parseFloat(kValue*(1-winnerExpectedScore)));
+	var loserNewELO = Math.round(parseInt(loserELO) + parseFloat(kValue*(0-loserExpectedScore)));
+
+	winnerRef.setPriority(winnerNewELO);
+	loserRef.setPriority(loserNewELO);
+}
+
+//Generate the new table from firebase, could be merged into the 'on' function later
+function generateTable(snapshot) {
+	$('#elotable tbody').empty();
+	snapshot.forEach(function(playerSnapShot) {
+		var newRow = '<tr>' + '<td>' + playerSnapShot.child('first').val() + '</td>' + '<td>' + playerSnapShot.child('last').val() + '</td>' + '<td>' + playerSnapShot.getPriority() + '</td>' + '</tr>';
+		$('#elotable tbody').prepend(newRow);
+	});
+}
+
+//Generate the new select dropdowns
+function generateSelectLists(snapshot) {
+	$('.select-player').empty();
+	$('.select-player').append('<option></option>');
+	snapshot.forEach(function(playerSnapShot) {
+		var newselect = '<option>' + playerSnapShot.name() + '</option>';
+		$('.select-player').append(newselect);
+	});
+}
+</script>
+<body>
