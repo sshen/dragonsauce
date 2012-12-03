@@ -1,17 +1,15 @@
 define(
-	['Backbone', 'Player'],
-	function(Backbone, 'Player') {
+	['BackPusher', 'Player'],
+	function(BackPusher, Player) {
 		var Players = Backbone.Collection.extend({
 			model: Player,
-			url: resources.get('launchpad-metadata').get('href'),
-			parse: function(response) {
-				return response.item;
-			},
-			initialize: function() {
-				this.fetch({async: false});
+			url: "/players",
+			initialize: function(callbackFn) {
+				this.backboneFirebase = new BackboneFirebase(this);
+				if ($.isFunction(callbackFn))
+					callbackFn.call();
 			}
 		});
-
-		return Players;
+		return new Players();
 	}
 );

@@ -1,9 +1,8 @@
 define(
-	[Backbone],
-	function(Backbone) {
+	['BackPusher'],
+	function(BackPusher) {
 		var Player = Backbone.Model.extend({
-			initialize: function() {
-			}
+			idAttribute: 'dragonsauce',
 		});
 		return Player;
 	}
