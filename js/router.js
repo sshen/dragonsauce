@@ -1,13 +1,17 @@
 define([
   'Global',
-  'mainView'
-], function(Global, mainView) {
+  'mainView',
+  'matchesView',
+  'newPlayerView'
+], function(Global, mainView, MatchesView, NewPlayerView) {
 	// http://documentcloud.github.com/backbone/#Router
 	var initialLoad = true;
 	
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'about': 'showAboutPage',
+			'new-player': 'showNewPlayerDialog',
+			'matches': 'goToMatches',
 			// Default
 			'*actions': 'defaultAction'
 		},
@@ -27,9 +31,17 @@ define([
 			$('#footer .ui-btn-active').removeClass('ui-btn-active');
 			$('span:contains("Show All")').parent('#footer a').addClass('ui-btn-active');
 		},
+		goToMatches: function() {
+			var matchesView = new MatchesView();
+			this.openPage(matchesView);
+		},
 		showAboutPage: function(){
 			var aboutView = new AboutView();
 			this.openPage(aboutView);
+		},
+		showNewPlayerDialog: function(){
+			var newPlayerView = new NewPlayerView();
+			this.openPage(newPlayerView);
 		},
 
 		//route
@@ -41,6 +53,7 @@ define([
 				Global.getUtilities().globalInit();
 				initialLoad = false;
 			} else {
+				console.log(page.id);
 				var pageIdSelector = '#' + page.id;
 				$(pageIdSelector).page();
 				$.mobile.changePage($(pageIdSelector));
@@ -61,7 +74,13 @@ define([
 		eventAggregator.on("showAbout", function() {
 			appRouter.navigate('#about', {trigger: true});
 		});
-
+		eventAggregator.on("newPlayerDialog", function() {
+			appRouter.navigate('#new-player', {trigger: true});
+		});
+		eventAggregator.on("goToMatches", function() {
+			appRouter.navigate('#matches', {trigger: true});
+		});
+		
 		Backbone.history.start();
 	};
 	

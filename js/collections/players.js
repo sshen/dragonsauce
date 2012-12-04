@@ -4,10 +4,11 @@ define(
 		var Players = Backbone.Collection.extend({
 			model: Player,
 			url: "/players",
-			initialize: function(callbackFn) {
+			initialize: function() {
 				this.backboneFirebase = new BackboneFirebase(this);
-				if ($.isFunction(callbackFn))
-					callbackFn.call();
+			},
+			comparator: function(player) {
+  				return player.get("last");
 			}
 		});
 		return new Players();

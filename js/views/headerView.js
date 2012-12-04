@@ -1,17 +1,26 @@
 define([
 	'Global',
-	'Text!../html/templates/navbars/header.html',
+	'Text!../html/templates/common/header.html'
 	],
 	function(Global, header) {
-		var headerView = Backbone.View.extend({
+		var HeaderView = Backbone.View.extend({
 			initialize: function() {
 				this.template = _.template(header);
 			},
-			render: function() {
-				var container = this.template({title: 'Players'});
-				$('#header').empty().append(container);	
+			render: function(details) {
+				var compiledTemplate = this.template(details),
+					container = $(this.el);
+				container.empty().append(compiledTemplate);
+				$('#header').empty().append(container).trigger('create');
+			},
+			events: {
+				"tap #New-btn": "newPlayer"
+			},
+			newPlayer: function(e) {
+				e.preventDefault();
+				Global.getUtilities().eventAggregator.trigger("newPlayerDialog");
 			}
 		});
-		return new headerView();
+		return HeaderView;
 	}
 );

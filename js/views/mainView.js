@@ -1,12 +1,12 @@
 define([
 	'Global',
-	'headerView',
 	'footerView',
 	'playersListView',
+	'Players',
 	'Text!../html/templates/common/main.html'
 	],
-	function(Global, headerView, footerView, playersListView, mainTemplate ) {
-		var mainView = Backbone.View.extend({
+	function(Global, footerView, PlayersListView, players, mainTemplate ) {
+		var MainView = Backbone.View.extend({
 			el: $('#main'),
 			initialize: function() {
 				this.mainTemplate = _.template(mainTemplate);
@@ -16,12 +16,11 @@ define([
 				container = $(this.el);
 				container.empty().append(compiledTemplate);
 				footerView.render();
-				headerView.render();
-				playersListView.render();
+				new PlayersListView();
 				
 				Global.getUtilities().create(container);
 			}
 		});
-		return new mainView();
+		return new MainView();
 	}
 );

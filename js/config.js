@@ -8,6 +8,7 @@ require.config({
 		'Underscore': 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min',
 		'JSON2': 'http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2',
 		'Backbone': 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min',
+		'FormParams': 'libs/jquery.formparams',
 		'Firebase': 'https://static.firebase.com/v0/firebase',
 		'BackPusher': 'libs/backbone-firebase',
 		'Global': 'global',
@@ -27,6 +28,8 @@ require.config({
 		'footerView': 'views/footerView', // use custom footer that doesn't have launchpad button, and has login/logout buttons
 		'playersListView': 'views/playersListView',
 		'aboutView': 'views/aboutView',
+		'newPlayerView': 'views/newPlayerView',
+		'matchesView': 'views/matchesView',
 
 		// require js plugins
 		'Text': 'libs/text'
@@ -41,14 +44,14 @@ require.config({
 		'jQM': {
 			deps: ['jQMConfig']
 		},
-		'Isotope': {
+		'FormParams': {
 			deps: ['jQuery']
 		},
 		'Underscore': {
 			exports: '_'
 		},
 		'Backbone': {
-			deps: ['Underscore', 'jQuery', 'JSON2'],
+			deps: ['Underscore', 'jQuery', 'JSON2', 'FormParams'],
 			exports: 'Backbone'
 		},
 		'BackPusher': {

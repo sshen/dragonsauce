@@ -14,9 +14,9 @@ define([],
 
 		utilities.parseTokenAndRegisterOauthHandler = function() {
 			var params = {}, queryString = location.hash.substring(1),
-		    regex = /([^&=]+)=([^&]*)/g, m;
+			regex = /([^&=]+)=([^&]*)/g, m;
 			while (m = regex.exec(queryString)) {
-		  		params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+				params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 			}
 
 			var token = params['token'];

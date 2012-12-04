@@ -17,7 +17,11 @@ define([
 				$('#footer').empty().append(container);
 			},
 			events: {
+				'tap #Matches-btn' : 'showMatches'
 			},
+			showMatches: function() {
+				Global.getUtilities().eventAggregator.trigger("goToMatches");
+			}
 			
 		});
 		

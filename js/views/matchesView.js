@@ -2,17 +2,16 @@ define([
 	'Global',
 	'headerView',
 	'Players',
-	'Text!../html/templates/lists/playerListing.html'
+	'Text!../html/templates/lists/playerSelect.html'
 	],
 	function(Global, HeaderView, players, playerListing) {
-		var PlayersListView = Backbone.View.extend({
+		var MatchesView = Backbone.View.extend({
 			tagName: 'ul',
-			id: 'players-list',
+			id: 'matches-list',
 			attributes: {"data-role": 'listview', "data-divider-theme": 'd', "data-theme": "c" },
 			initialize: function() {
 				this.template = _.template(playerListing);
 				this.collection = players;
-				this.collection.bind('add', this.render, this);
 			},
 			
 			render: function() {
@@ -23,7 +22,7 @@ define([
 
 				container.empty();
 
-				headerView.render({title: "Players", rightAction: "New"});
+				headerView.render({title: "Matches", rightAction: "New"});
 				console.log(players);
 				players.each(function(player) {
 					container.append(template(player.toJSON()));
@@ -32,6 +31,6 @@ define([
 				$('#main').find(":jqmData(role='content')").empty().append(container).trigger('create');				
 			}
 		});
-		return PlayersListView;
+		return MatchesView;
 	}
 );

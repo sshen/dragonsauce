@@ -3,10 +3,10 @@
 
 /**
 *
-* @project Launchpad
-* @version MBB/Version 1
+* @project DragonSauce
+* @version Version 1
 * @package xhtml-css
-* @author Agilex
+* @author Benjamin Cushing
 * @cssdoc version 1
 *
 * @colordef
@@ -14,109 +14,9 @@
 *
 */
 
-
-/** CSS BELOW HAS BEEN IMPORTED FROM ISOTOPE CSS, TESTING **/
-#container {
-	width: 100%;
-	height: 100%;
-	margin: 0 auto;
-	text-shadow: none;
-	font-weight: normal;
-	padding: 0;
+.ui-dialog-contain > .ui-content {
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
-.item {
-	width: 270px;
-	height: 120px;
-	position: relative;
-	top: 50%;
-	
-	padding-top: 10px;
-	padding-bottom: 30px;
-	padding-left: 110px;
-	padding-right: 25px;
-	
-	margin: 10px;
-	
-	vertical-align: top;
-	-webkit-box-align: center;
-	text-align: center;
-	
-	border: none;
-	border-image: none;
-	-webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
-	-moz-box-sizing: border-box; /* Firefox 1+ */
-	box-sizing: border-box; /* Chrome, IE8+, Opera, Safari 5.1*/
-	cursor: pointer;
-	background: none;
-	display: block;
-	color: black;
-	
-	text-align: left;
-	font-weight: lighter;
-	font-size: 0.8em;
-	
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top,  #ffffff 0%, #dddddd 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* IE10+ */
-	background: linear-gradient(top,  #ffffff 0%,#dddddd 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
-	
-	-webkit-border-radius:5px; /* Saf3-4, iOS 1-3.2, Android ≤1.6 */
-	-moz-border-radius: 5px; /* FF1-3.6 */
-	border-radius: 5px; /* Opera 10.5, IE9, Saf5, Chrome, FF4, iOS 4, Android 2.1+ */
-	-webkit-box-shadow: 0px 2px 5px 1px #6D6D6D; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-	-moz-box-shadow: 0px 2px 5px 1px #6D6D6D; /* FF3.5 - 3.6 */
-	box-shadow: 0px 2px 5px 1px #6D6D6D; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
-}
- 
-.item h2 {
-	color: #36699D;
-	vertical-align: baseline;
-	padding: 0;
-	font-size: 1.1em;
-	font-weight:normal;
-}
 
-.item img {
-	position: absolute;
-	top: 50%;
-	left: 20px;
-	margin-top: -36px;
-}
-
-.isotope-item {
-  z-index: 2;
-}
- 
-.isotope-hidden.isotope-item {
-  pointer-events: none;
-  z-index: 1;
-}
- 
-.isotope,
-.isotope .isotope-item {
-  /* change duration value to whatever you like */
-  -webkit-transition-duration: 0.8s;
-     -moz-transition-duration: 0.8s;
-          transition-duration: 0.8s;
-}
- 
-.isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-          transition-property: height, width;
-}
- 
-.isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-          transition-property:         transform, opacity;
-}
-
-.redFlag {
-	color: red;
-}

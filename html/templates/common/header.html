@@ -1,0 +1,12 @@
+<% if (typeof leftAction !== 'undefined') { %>
+	<a id="<%= leftAction %>-btn" data-mini='true' data-theme="b" data-role="button" data-icon="arrow-l" class="ui-btn-left" ><%= leftAction %></a>
+<% } %>
+<% if (typeof itemCount !== 'undefined') { %>
+	<h3 name="<%= title %>" class="ui-title" role="heading" aria-level="1"><%= title %> (<span id="item-count"><%= itemCount %></span>)</h3>
+<% } else { %>
+	<h3 name="<%= title %>" class="ui-title" role="heading" aria-level="1"><%= title %></h3>
+<% } %>
+
+<% if (typeof rightAction !== 'undefined') { %>
+	<a id="<%= rightAction %>-btn" data-theme="b" data-mini='true' data-role="button" data-icon="plus" class="ui-btn-right"><%= rightAction %></a>
+<% } %>
